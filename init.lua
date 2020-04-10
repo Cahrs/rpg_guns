@@ -19,19 +19,16 @@ minetest.register_globalstep(function(dtime)
     for user, tbl in pairs(rpg_guns.frozen) do
         if current - tbl.time > rpg_guns.frozen_time then
             user:set_physics_override({speed = rpg_guns.physics[user].speed, jump = rpg_guns.physics[user].jump})
-            --minetest.chat_send_all(dump(rpg_guns.frozen[user].texture))
-            user:set_properties({texture = rpg_guns.frozen[user].texture})
+            user:set_properties({textures = rpg_guns.frozen[user].texture})
             rpg_guns.frozen[user] = nil
         end
     end
 end)
 
 local function freeze(itemstack, user, obj)
-    --minetest.chat_send_all("freeze")
     if obj:is_player() and obj ~= user then
         obj:set_physics_override({speed = 0, jump = 0})
-        minetest.chat_send_all(dump(obj:get_properties()))
-        rpg_guns.frozen[obj] = {time = minetest.get_us_time() / 1000000, texture = obj:get_properties().textures[1]}
+        rpg_guns.frozen[obj] = {time = minetest.get_us_time() / 1000000, texture = obj:get_properties().textures}
         obj:set_properties({textures = {"default_ice.png"}})
     end
     return false
@@ -68,7 +65,7 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
         spread = 6,
         dmg = 0,
         shots = 9,
-        interval = 1,
+        interval = 5,
     },
 })
 

@@ -75,6 +75,7 @@ gunkit.register_mag("rpg_guns:smg_mag", {
     type = "smg",
     ammo = "rpg_guns:bullet",
     max_ammo = 100,
+    mag_type = "smg",
 })
 
 minetest.register_craftitem("rpg_guns:bullet", {

@@ -48,9 +48,9 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
         bullet_shell_sound = "bullet_shell",
 
         range = 60,
-        speed = 300,
+        speed = 3000,
         spread = 4,
-        dmg = 2,
+        dmg = 7,
         shots = 1,
         interval = 0.1,
         zoom = 1.5,
@@ -61,7 +61,7 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
         bullet_shell_sound = "bullet_shell",
 
         range = 30,
-        speed = 300,
+        speed = 3000,
         spread = 6,
         dmg = 0,
         shots = 9,

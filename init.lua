@@ -15,7 +15,7 @@ end)
 
 minetest.register_globalstep(function(dtime)
     local current = minetest.get_us_time() / 1000000
-    
+
     for user, tbl in pairs(rpg_guns.frozen) do
         if current - tbl.time > rpg_guns.frozen_time then
             user:set_physics_override({speed = rpg_guns.physics[user].speed, jump = rpg_guns.physics[user].jump})
@@ -40,7 +40,7 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
     wield_scale = {x = 2, y = 2, z = 1},
     mag_type = "smg",
 
-    callbacks = {alt_fire = {hit = freeze}},
+    callbacks = {alt_fire = {on_hit = freeze}},
 
     fire = {
         bullet_texture = "bullet.png",

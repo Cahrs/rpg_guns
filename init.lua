@@ -88,7 +88,7 @@ minetest.register_craft({
     output = "rpg_guns:smg_ice",
     recipe = {
         {"default:ice", "default:ice", "default:ice"},
-        {"default:steel_ingot", "tnt:gunpowder", "default:steel_indot"},
+        {"default:steel_ingot", "tnt:gunpowder", "default:steel_ingot"},
         {"default:steel_ingot", "", ""},
     }
 })

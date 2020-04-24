@@ -25,11 +25,11 @@ minetest.register_globalstep(function(dtime)
     end
 end)
 
-local function freeze(itemstack, user, obj)
-    if obj:is_player() and obj ~= user then
-        obj:set_physics_override({speed = 0, jump = 0})
-        rpg_guns.frozen[obj] = {time = minetest.get_us_time() / 1000000, texture = obj:get_properties().textures}
-        obj:set_properties({textures = {"default_ice.png"}})
+local function freeze(tbl)
+    if tbl.obj:is_player() and tbl.obj ~= tbl.user then
+        tbl.obj:set_physics_override({speed = 0, jump = 0})
+        rpg_guns.frozen[tbl.obj] = {time = minetest.get_us_time() / 1000000, texture = tbl.obj:get_properties().textures}
+        tbl.obj:set_properties({textures = {"default_ice.png"}})
     end
     return false
 end

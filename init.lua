@@ -34,18 +34,32 @@ local function freeze(tbl)
     return false
 end
 
+local function hit_sound(tbl)
+    minetest.sound_play("rpg_guns_hit", {play_to = tbl.user:get_player_name()})
+    return true
+end
+
 gunkit.register_firearm("rpg_guns:smg_ice", {
-    description = "Ice Smgay",
-    inventory_image = "smgay.png",
+    description = "Ice Smg",
+    inventory_image = "rpg_guns_smg.png",
     wield_scale = {x = 2, y = 2, z = 1},
     mag_type = "smg",
 
-    callbacks = {alt_fire = {on_hit = freeze}},
+    sounds = {
+        mag_load = "rpg_guns_mag_load",
+        mag_drop = "rpg_guns_mag_drop",
+        fire_empty = "rpg_guns_fire_empty",
+    },
+
+    callbacks = {fire = {on_hit = hit_sound}, alt_fire = {on_hit = freeze}},
 
     fire = {
-        bullet_texture = "bullet.png",
-        bullet_sound = "gunfire",
-        bullet_shell_sound = "bullet_shell",
+        bullet_texture = "rpg_guns_bullet.png",
+        sounds = {
+            fire = "rpg_guns_fire",
+            fire_toggle = "rpg_guns_toggle_a",
+            shell_drop = "rpg_guns_shell_drop",
+        },
 
         range = 60,
         speed = 300,
@@ -55,10 +69,14 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
         interval = 0.1,
         zoom = 2,
     },
+
     alt_fire = {
         bullet_texture = "default_ice.png",
-        bullet_sound = "gunfire",
-        bullet_shell_sound = "bullet_shell",
+        sounds = {
+            fire = "rpg_guns_fire",
+            fire_toggle = "rpg_guns_toggle_b",
+            shell_drop = "rpg_guns_shell_drop",
+        },
 
         range = 30,
         speed = 300,
@@ -72,8 +90,7 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
 
 gunkit.register_mag("rpg_guns:smg_mag", {
     description = "Smg Mag",
-    inventory_image = "smg_mag.png",
-    type = "smg",
+    inventory_image = "rpg_guns_smg_mag.png",
     ammo = "rpg_guns:bullet",
     max_ammo = 100,
     mag_type = "smg",
@@ -81,7 +98,7 @@ gunkit.register_mag("rpg_guns:smg_mag", {
 
 minetest.register_craftitem("rpg_guns:bullet", {
     description = "Bullet",
-    inventory_image = "bullet_shell.png",
+    inventory_image = "rpg_guns_bullet_shell.png",
 })
 
 minetest.register_craft({

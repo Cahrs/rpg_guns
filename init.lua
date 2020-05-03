@@ -68,6 +68,7 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
         shots = 1,
         interval = 0.1,
         zoom = 2,
+        zoom_time = 0.1,
     },
 
     alt_fire = {
@@ -85,6 +86,7 @@ gunkit.register_firearm("rpg_guns:smg_ice", {
         shots = 9,
         interval = 5,
         zoom = 1.5,
+        zoom_time = 0.1,
     },
 })
 
